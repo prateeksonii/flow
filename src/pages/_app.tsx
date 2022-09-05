@@ -7,6 +7,8 @@ import type { AppType } from "next/dist/shared/lib/utils";
 import superjson from "superjson";
 import type { AppRouter } from "@server/router";
 import "@/styles/globals.css";
+import Navbar from "@/components/Navbar";
+import Menu from "@/components/Menu";
 
 const MyApp: AppType = ({
   Component,
@@ -14,7 +16,15 @@ const MyApp: AppType = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <div className="h-screen flex flex-col">
+        <Navbar />
+        <div className="grid grid-cols-[20%_80%] flex-1">
+          <Menu />
+          <article className="prose p-3 max-w-full">
+            <Component {...pageProps} />
+          </article>
+        </div>
+      </div>
     </SessionProvider>
   );
 };

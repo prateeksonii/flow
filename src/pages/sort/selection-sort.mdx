@@ -1,0 +1,36 @@
+import TryIt from "@/components/TryIt";
+
+# Selection Sort
+
+The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from the unsorted part and putting it at the beginning.
+
+The algorithm maintains two subarrays in a given array.
+
+- The subarray which already sorted.
+- The remaining subarray was unsorted.
+
+<details>
+  <summary>View code</summary>
+    ```ts
+    const selectionSort = (list: Number[]) => {
+      for (let index = 0; index < list.length - 1; index++) {
+        let minElement = list[index]!;
+        let minIndex = index;
+
+        for (let subIndex = index + 1; subIndex < list.length; subIndex++) {
+          if (list[subIndex]! < minElement) {
+            minElement = list[subIndex]!;
+            minIndex = subIndex;
+          }
+        }
+
+        let temp = list[index]!;
+        list[index] = list[minIndex]!;
+        list[minIndex] = temp;
+      }
+    };
+    ```
+
+</details>
+
+<TryIt name="selection-sort" />

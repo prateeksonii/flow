@@ -1,18 +1,18 @@
-import { env } from "./src/env/server.mjs";
+import mdxConfig from "@next/mdx";
 
-/**
- * Don't be scared of the generics here.
- * All they do is to give us autocompletion when using this.
- *
- * @template {import('next').NextConfig} T
- * @param {T} config - A generic parameter that flows through to the return type
- * @constraint {{import('next').NextConfig}}
- */
-function defineNextConfig(config) {
-  return config;
-}
+const withMDX = mdxConfig({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+    // If you use `MDXProvider`, uncomment the following line.
+    // providerImportSource: "@mdx-js/react",
+  },
+});
 
-export default defineNextConfig({
+export default withMDX({
+  // Append the default value with md extensions
+  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   reactStrictMode: true,
   swcMinify: true,
 });
