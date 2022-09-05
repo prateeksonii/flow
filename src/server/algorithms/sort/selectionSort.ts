@@ -1,4 +1,8 @@
-export const selectionSort = (list: Number[]) => {
+import { Step } from "@server/common/types/Step";
+
+export const selectionSort = (list: number[]): Step<number[]>[] => {
+  let steps: Step<number[]>[] = [];
+
   for (let index = 0; index < list.length - 1; index++) {
     let minElement = list[index]!;
     let minIndex = index;
@@ -13,5 +17,11 @@ export const selectionSort = (list: Number[]) => {
     let temp = list[index]!;
     list[index] = list[minIndex]!;
     list[minIndex] = temp;
+
+    steps.push({
+      result: [...list],
+    });
   }
+
+  return steps;
 };
